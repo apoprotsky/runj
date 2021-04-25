@@ -10,10 +10,10 @@ task:
       - "[ -d dist ] || git clone https://github.com/vlang/v"
       - cd v
       - git pull
-      - make
-      - ./v symlink
   init_script:
-    - /root/v symlink
+    - cd /root/v
+    - make
+    - ./v symlink
   check_script:
     - v fmt -c .
     - v vet -W .
