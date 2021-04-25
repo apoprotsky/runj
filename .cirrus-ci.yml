@@ -1,0 +1,20 @@
+freebsd_instance:
+  image_family: freebsd-12-2
+
+task:
+  name: build
+  init_script:
+    - pkg install -y git-lite
+  v_script:
+    - git clone https://github.com/vlang/v
+    - cd v
+    - make
+    - ./v symlink
+  check_script:
+    - v fmt -c .
+    - v vet -W .
+  build_script:
+    - mkdir -p dist/usr/local/bin
+    - v -prod -o dist/usr/local/bin/runj .
+  pkg_script:
+    - pkg create -M dist/manifest -p dist/plist -r dist -o dist -v

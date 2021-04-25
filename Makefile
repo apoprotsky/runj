@@ -14,7 +14,7 @@ help:
 all: fmt vet build
 
 fmt:
-	@v fmt -w .
+	@v fmt -l -w .
 
 vet:
 	@v vet -W .

@@ -1,0 +1,14 @@
+name: runj
+version: 0.0.1
+origin: local
+arch: amd64
+prefix: /usr/local
+maintainer: poprotsky@mail.ru
+www: https://github.com/apoprotsky/runj
+comment: OCI-compatible runtime for FreeBSD jails
+desc: <<EOD
+runj is a written in V
+OCI-compatible runtime for FreeBSD jails
+
+WWW: https://github.com/apoprotsky/runj
+EOD
