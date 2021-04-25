@@ -24,4 +24,8 @@ task:
   pkg_script:
     - pkg create -M dist/manifest -p dist/plist -r dist -o dist -v
   cleanup_script:
-    - rm /root/v/v
+    - cd /root/v
+    - rm v
+    - rm cmd/tools/vsymlink
+    - rm cmd/tools/vvet/vvet
+    - rm cmd/tools/vfmt
