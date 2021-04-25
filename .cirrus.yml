@@ -4,9 +4,6 @@ freebsd_instance:
 task:
   v_cache:
     folder: /root/v
-    fingerprint_script:
-      - echo $CIRRUS_OS
-      - v version
     populate_script:
       - pkg install -y git-lite
       - cd /root
@@ -25,3 +22,5 @@ task:
     - v -prod -o dist/usr/local/bin/runj .
   pkg_script:
     - pkg create -M dist/manifest -p dist/plist -r dist -o dist -v
+  cleanup_script:
+    - rm /root/v/v
