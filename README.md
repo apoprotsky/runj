@@ -1,5 +1,7 @@
 # runj
 
+[![Build Status](https://api.cirrus-ci.com/github/apoprotsky/runj.svg)](https://cirrus-ci.com/github/apoprotsky/runj)
+
 runj is a written in [V](https://vlang.io) experimental implementation of [OCI-compatible runtime](https://github.com/opencontainers/runtime-spec) for [FreeBSD](https://www.freebsd.org/) [jails](https://docs.freebsd.org/en/books/handbook/jails).
 
 Project is inspired by [runj](https://github.com/samuelkarp/runj) developing by [Samuel Karp](https://github.com/samuelkarp).
