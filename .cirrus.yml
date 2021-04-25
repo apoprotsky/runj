@@ -3,6 +3,11 @@ freebsd_instance:
 
 task:
   name: vlang
+  v_cache:
+    folder: /root/v
+    fingerprint_script:
+      - echo $CIRRUS_OS
+      - v version
   script:
     - pkg install -y git-lite
     - cd /root
@@ -13,17 +18,23 @@ task:
 
 task:
   name: check
+  depends_on:
+    - vlang
   script:
     - v fmt -c .
     - v vet -W .
 
 task:
   name: build
+  depends_on:
+    - check
   script:
     - mkdir -p dist/usr/local/bin
     - v -prod -o dist/usr/local/bin/runj .
 
 task:
   name: pkg
+  depends_on:
+    - build
   script:
     - pkg create -M dist/manifest -p dist/plist -r dist -o dist -v
