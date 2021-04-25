@@ -29,6 +29,7 @@ pub fn get_commands() []cli.Command {
 		cli.Command{
 			name: 'spec'
 			description: 'create a new specification file'
+			execute: spec_command
 			flags: [
 				cli.Flag{
 					flag: cli.FlagType.string
@@ -38,7 +39,6 @@ pub fn get_commands() []cli.Command {
 					default_value: ['.']
 				},
 			]
-			execute: spec_command
 		},
 		cli.Command{
 			name: 'start'
