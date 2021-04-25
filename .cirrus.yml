@@ -2,39 +2,26 @@ freebsd_instance:
   image_family: freebsd-12-2
 
 task:
-  name: vlang
   v_cache:
     folder: /root/v
     fingerprint_script:
       - echo $CIRRUS_OS
       - v version
-  script:
-    - pkg install -y git-lite
-    - cd /root
-    - "[ -d dist ] || git clone https://github.com/vlang/v"
-    - cd v
-    - make
-    - ./v symlink
-
-task:
-  name: check
-  depends_on:
-    - vlang
-  script:
+    populate_script:
+      - pkg install -y git-lite
+      - cd /root
+      - "[ -d dist ] || git clone https://github.com/vlang/v"
+      - cd v
+      - git pull
+      - make
+      - ./v symlink
+  init_script:
+    - /root/v symlink
+  check_script:
     - v fmt -c .
     - v vet -W .
-
-task:
-  name: build
-  depends_on:
-    - check
-  script:
+  build_script:
     - mkdir -p dist/usr/local/bin
     - v -prod -o dist/usr/local/bin/runj .
-
-task:
-  name: pkg
-  depends_on:
-    - build
-  script:
+  pkg_script:
     - pkg create -M dist/manifest -p dist/plist -r dist -o dist -v
