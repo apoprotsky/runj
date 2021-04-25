@@ -7,11 +7,12 @@ task:
     populate_script:
       - pkg install -y git-lite
       - cd /root
-      - "[ -d dist ] || git clone https://github.com/vlang/v"
-      - cd v
-      - git pull
+      - git clone https://github.com/vlang/v
+  install_script:
+    - pkg install -y git-lite
   init_script:
     - cd /root/v
+    - git pull
     - make
     - ./v symlink
   check_script:
